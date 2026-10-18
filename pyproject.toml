@@ -1,0 +1,45 @@
+[project]
+name = "wiktionary-de-mcp"
+version = "0.1.0"
+description = "MCP server for the German Wiktionary (de.wiktionary.org): check if words exist, look up grammar, meanings and conjugations."
+readme = "README.md"
+authors = [
+    { name = "Joel Barmettler", email = "joel.barmettler@gmail.com" }
+]
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+keywords = ["mcp", "wiktionary", "german", "deutsch", "dictionary", "claude"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Natural Language :: German",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp>=2.3,<3",
+]
+
+[project.urls]
+Homepage = "https://github.com/joelbarmettlerUZH/wiktionary-mcp"
+Repository = "https://github.com/joelbarmettlerUZH/wiktionary-mcp"
+Issues = "https://github.com/joelbarmettlerUZH/wiktionary-mcp/issues"
+
+[project.scripts]
+wiktionary-de-mcp = "wiktionary_de_mcp.server:main"
+
+[build-system]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = ["network: hits the live de.wiktionary.org API"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
