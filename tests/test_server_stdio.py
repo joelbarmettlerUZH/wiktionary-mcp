@@ -41,3 +41,9 @@ async def test_lookup_missing_word():
 async def test_conjugation():
     text = await _call("get_inflection_table", {"word": "gehen"})
     assert "ich ging" in text
+
+
+async def test_adjective_declension():
+    text = await _call("get_inflection_table", {"word": "schön"})
+    assert "### Komparativ" in text
+    assert "schönem" in text

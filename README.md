@@ -25,7 +25,7 @@ No API key or account is needed.
 | Tool | What it does |
 |---|---|
 | `lookup_word` | Checks whether a word exists and returns its dictionary entry: part of speech, gender, inflected forms (plural and cases, comparative and superlative, principal verb forms, auxiliary verb), hyphenation, pronunciation (IPA), meanings, etymology, synonyms, antonyms and example sentences. Upper- and lower-case spellings are tried automatically (*Laufen* vs. *laufen*). If the word isn't in Wiktionary, the result says `NOT FOUND` and suggests similar entries. |
-| `get_inflection_table` | The complete conjugation of a verb: every tense, mood and person, plus participles and the imperative. For nouns and adjectives it returns the declension or comparison forms. |
+| `get_inflection_table` | The complete conjugation of a verb (every tense, mood and person, plus participles and the imperative), or the full declension of an adjective in the positive, comparative and superlative. For nouns it returns all case and number forms. |
 | `search_wiktionary` | Searches titles and full text, with "did you mean" suggestions. Handy for misspellings or for finding compounds that contain a word stem. |
 | `get_raw_wikitext` | The raw source of a page, for anything the other tools leave out (translations, references). Returns 8,000 characters at a time and can be narrowed to one section. |
 
@@ -45,8 +45,13 @@ directly:
 
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+- Linux: `~/.config/Claude/claude_desktop_config.json`
 
-Add the server:
+Quit Claude Desktop completely before editing: use **Quit** from the menu bar or system tray
+icon, since closing the window leaves it running. The app saves its own preferences into the
+same file while it runs, so edits made while it's open can be overwritten.
+
+Add the server, keeping any keys already in the file (such as `preferences`):
 
 ```json
 {
@@ -62,9 +67,13 @@ Add the server:
 Restart Claude Desktop, then ask it something about a German word.
 
 If Claude Desktop reports that it can't start the server, it usually can't find `uvx`.
-Desktop apps often don't see the `PATH` from your shell. Run `which uvx` (macOS) or
+Desktop apps often don't see the `PATH` from your shell. Run `which uvx` (macOS, Linux) or
 `where uvx` (Windows) and put the full path in `"command"`, for example
 `"/Users/you/.local/bin/uvx"`.
+
+If the server doesn't show up at all, check the MCP log: `~/Library/Logs/Claude/` on macOS,
+`%APPDATA%\Claude\logs\` on Windows, `~/.config/Claude/logs/` on Linux. A line saying
+`no stdio servers connected` means the app didn't find an `mcpServers` entry in its config.
 
 ### Claude Code
 

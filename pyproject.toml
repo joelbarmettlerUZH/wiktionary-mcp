@@ -1,6 +1,6 @@
 [project]
 name = "wiktionary-de-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP server for the German Wiktionary (de.wiktionary.org): check if words exist, look up grammar, meanings and conjugations."
 readme = "README.md"
 authors = [

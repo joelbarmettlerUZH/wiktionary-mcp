@@ -219,9 +219,10 @@ async def get_inflection_table(
     """Return the complete inflection table for a German word.
 
     For verbs this is the full conjugation (all tenses, moods, persons, participles,
-    imperative) from the page "Flexion:<word>". Most nouns and adjectives have no
-    such page; for them this returns the declension or comparison forms listed
-    on the entry itself.
+    imperative); for adjectives the full strong/weak/mixed declension of the positive,
+    comparative and superlative. Both come from the page "Flexion:<word>". Nouns
+    usually have no such page; for them this returns the case and number forms
+    listed on the entry itself.
     """
     word = word.strip()
     if not word:
